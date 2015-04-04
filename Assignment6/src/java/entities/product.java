@@ -6,6 +6,9 @@
 
 package entities;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 /**
  *
  * @author c0647610
@@ -56,6 +59,13 @@ public class product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public JsonObject toJSON() {
+        return Json.createObjectBuilder()
+                .add("productId", productId)
+                .add("name", name)
+                .add("quantity", quantity)
+                .build();
     }
     
 
