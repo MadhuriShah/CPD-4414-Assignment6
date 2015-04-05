@@ -6,6 +6,9 @@
 
 package sevices;
 
+import entities.productList;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,7 +26,10 @@ import javax.ws.rs.core.Response;
  * @author c0647610
  */
 @Path("/product")
+@RequestScoped
 public class productRest {
+    @Inject
+    productList ProductList;
     @GET
     @Produces("application/json")
     public Response getAll(){
