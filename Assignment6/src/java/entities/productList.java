@@ -48,10 +48,10 @@ public class productList {
              product p;
              while(rs.next()){
                  p=new product(
-                           rs.getInt("ProductID"),
-                        rs.getString("Name"),
-                        rs.getString("Description"),
-                        rs.getInt("Quantity"));
+                           rs.getInt("productId"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("quantity"));
                 productList.add(p);
              
              }
@@ -84,7 +84,7 @@ public class productList {
             }
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                sb.append(String.format("%s\t%s\t%s\n", rs.getInt("id"), rs.getString("name"), rs.getInt("age")));
+                sb.append(String.format("%s\t%s\t%s\t%s\n", rs.getInt("productId"), rs.getString("name"), rs.getString("description"), rs.getInt("quantity")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(productList.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,5 +111,15 @@ public class productList {
             json.add(p.toJSON());
         return json.build();
     }
-  
+  public product get(int ProductId) {
+        product result = null;
+        for (int i =0; i < productList.size() && result == null; i++){
+            product p = productList.get(i);
+            if (p.getProductId()== ProductId) {
+                result = p;
+            }
+        }
+        return result;
+    }
+    
 }

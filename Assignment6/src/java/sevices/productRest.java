@@ -33,7 +33,7 @@ public class productRest {
     @GET
     @Produces("application/json")
     public Response getAll(){
-        return null;
+          return Response.ok(ProductList.toJSON()).build();
     }
     
     @GET
