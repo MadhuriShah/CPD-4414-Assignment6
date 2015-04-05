@@ -138,14 +138,27 @@ public class productList {
         original.setName(product.getName());
         original.setDescription(product.getDescription());
         original.setQuantity(product.getQuantity());
-    }
-        public void remove(int productId) throws Exception {
+        }
+    public void remove(int productId) throws Exception {
         int result = doUpdate("Delete from product where productId=?",String.valueOf(productId));
         if(result > 0) {
             product original = get(productId);
             productList.remove(original);
         }
          else throw new Exception("Error: Delete"); 
+    }
+      
+    public void add(product p) throws Exception {
+           int result = doUpdate(  "INSERT into product (productId, name, description, quantity) values (?, ?, ?, ?)",
+                String.valueOf(p.getProductId()),
+                p.getName(),
+                p.getDescription(),
+                String.valueOf(p.getQuantity()));
+        if (result > 0) {
+            productList.add(p);
+        } else {
+            throw new Exception("Error: Add");
+        }
     }
     
 }

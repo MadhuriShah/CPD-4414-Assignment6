@@ -48,7 +48,13 @@ public class productRest {
      @POST
     @Consumes("application/json")
     public Response add(JsonObject json) {
-        return null;
+        try {
+            ProductList.add(new product(json));
+            return Response.ok().build();
+        } catch (Exception ex) {
+             return Response.status(500).build();
+        }
+       
     }
     @PUT
     @Path("{id}")
