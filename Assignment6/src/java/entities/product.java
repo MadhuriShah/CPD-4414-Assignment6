@@ -67,6 +67,10 @@ public class product {
                 .add("quantity", quantity)
                 .build();
     }
-    
-
+    public product(JsonObject json) {
+        productId = json.getInt("productId");
+        name = json.getString("name");
+        description = json.getString("description");
+        quantity = json.getInt("quantity");
+    }
 }
