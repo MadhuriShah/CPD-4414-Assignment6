@@ -121,5 +121,23 @@ public class productList {
         }
         return result;
     }
+  public void set(int productId, product product) throws Exception {
+        int result = doUpdate("UPDATE product SET name = ?, description = ?. quantity = ? WHERE productId = ?" ,
+                product.getName(),
+                product.getDescription(),
+                String.valueOf(product.getQuantity()),
+                String.valueOf(productId)
+        );
+        if(result == 1) {
+            product original = get(productId);
+            original.setName(product.getName());
+        
+        }
+        else throw new Exception("Error with update"); 
+        product original = get(productId);
+        original.setName(product.getName());
+        original.setDescription(product.getDescription());
+        original.setQuantity(product.getQuantity());
+    }
     
 }

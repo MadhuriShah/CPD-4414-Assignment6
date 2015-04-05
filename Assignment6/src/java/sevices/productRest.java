@@ -6,7 +6,10 @@
 
 package sevices;
 
+import entities.product;
 import entities.productList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -40,7 +43,7 @@ public class productRest {
     @Path("{id}")
     @Produces("application/json")
     public Response getbyId(@PathParam ("id") int id){
-        return null;
+        return Response.ok(ProductList.get(id).toJSON()).build();
     }
      @POST
     @Consumes("application/json")
@@ -51,7 +54,14 @@ public class productRest {
     @Path("{id}")
      @Consumes("application/json")
     public Response set(@PathParam("id") int id, JsonObject json) {
-        return null;
+        try {
+            product p = new product(json);
+          ProductList.set(id, p);
+            return Response.ok().build();
+        } catch (Exception ex) {
+            Logger.getLogger(productRest.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(500).build();
+        }
     }
      @DELETE
     @Path("{id}")
