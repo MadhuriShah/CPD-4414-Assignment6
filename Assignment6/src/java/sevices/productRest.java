@@ -68,7 +68,14 @@ public class productRest {
     @Consumes("application/json")
     public Response delete(@PathParam("id") int id) {
         
-        return null;
+        try {
+            ProductList.remove(id);
+            return Response.ok().build();
+        } catch (Exception ex) {
+           
+            return Response.status(500).build();
+        }
+        
     
 }
 }

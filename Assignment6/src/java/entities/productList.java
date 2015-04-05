@@ -141,9 +141,7 @@ public class productList {
     }
         public void remove(int productId) throws Exception {
         int result = doUpdate("Delete from product where productId=?",String.valueOf(productId));
-        
         if(result > 0) {
-            //the successful, now remove from list
             product original = get(productId);
             productList.remove(original);
         }
