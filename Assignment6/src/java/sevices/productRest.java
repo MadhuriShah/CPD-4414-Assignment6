@@ -65,7 +65,6 @@ public class productRest {
           ProductList.set(id, p);
             return Response.ok().build();
         } catch (Exception ex) {
-            Logger.getLogger(productRest.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
