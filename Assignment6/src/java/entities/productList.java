@@ -133,11 +133,21 @@ public class productList {
             original.setName(product.getName());
         
         }
-        else throw new Exception("Error with update"); 
+        else throw new Exception("Error: Update"); 
         product original = get(productId);
         original.setName(product.getName());
         original.setDescription(product.getDescription());
         original.setQuantity(product.getQuantity());
+    }
+        public void remove(int productId) throws Exception {
+        int result = doUpdate("Delete from product where productId=?",String.valueOf(productId));
+        
+        if(result > 0) {
+            //the successful, now remove from list
+            product original = get(productId);
+            productList.remove(original);
+        }
+         else throw new Exception("Error: Delete"); 
     }
     
 }

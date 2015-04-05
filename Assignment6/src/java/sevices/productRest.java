@@ -67,7 +67,8 @@ public class productRest {
     @Path("{id}")
     @Consumes("application/json")
     public Response delete(@PathParam("id") int id) {
+        
         return null;
-    }
     
+}
 }
